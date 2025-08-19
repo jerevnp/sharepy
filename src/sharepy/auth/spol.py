@@ -56,6 +56,9 @@ class SharePointOnline(BaseAuth):
         cookie_url = f'https://{self.site}/_forms/default.aspx?wa=wsignin1.0'
         response = requests.post(cookie_url, data=self.token, headers={'Host': self.site})
 
+        print(response.raw.data)
+        print(response.cookies.items())
+
         # Create access cookie from returned headers
         cookie = self._buildcookie(response.cookies)
         # Verify access by requesting page
